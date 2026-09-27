@@ -17,7 +17,9 @@ Steel mills scrap or downgrade coils with surface defects, but a human inspector
 
 ## Live demo
 
-**[Try it here](#)** — upload your own image or pick a sample, see the classification and LLM-generated report immediately. No install required.
+**[Try it here](https://tiasha-steel-defect-detection.streamlit.app/)** — upload your own image or pick a sample, see the classification and LLM-generated report immediately. No install required.
+
+(Note: the hosted demo has no Ollama to call, so it shows the honest template-fallback report rather than LLM-composed prose — see [Engineering decisions](#engineering-decisions) below. Run it locally with `ollama serve` for the full LLM-generated version.)
 
 To run the same demo locally instead:
 
