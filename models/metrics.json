@@ -1,0 +1,120 @@
+{
+  "trained_at": "2026-09-27T01:01:06.454726+00:00",
+  "seed": 42,
+  "backbone": "mobilenet_v2 (frozen, ImageNet-pretrained)",
+  "class_names": [
+    "crazing",
+    "inclusion",
+    "patches",
+    "pitted_surface",
+    "rolled-in_scale",
+    "scratches"
+  ],
+  "split_sizes": {
+    "train": 1260,
+    "val": 269,
+    "test": 271
+  },
+  "accuracy": 0.992619926199262,
+  "macro_avg": {
+    "precision": 0.9930555555555557,
+    "recall": 0.9925925925925926,
+    "f1-score": 0.992666021921341,
+    "support": 271.0
+  },
+  "weighted_avg": {
+    "precision": 0.9929274292742929,
+    "recall": 0.992619926199262,
+    "f1-score": 0.9926145731476658,
+    "support": 271.0
+  },
+  "per_class": {
+    "crazing": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 45.0
+    },
+    "inclusion": {
+      "precision": 1.0,
+      "recall": 0.9555555555555556,
+      "f1-score": 0.9772727272727273,
+      "support": 45.0
+    },
+    "patches": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 45.0
+    },
+    "pitted_surface": {
+      "precision": 0.9583333333333334,
+      "recall": 1.0,
+      "f1-score": 0.9787234042553191,
+      "support": 46.0
+    },
+    "rolled-in_scale": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 45.0
+    },
+    "scratches": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 45.0
+    }
+  },
+  "confusion_matrix": [
+    [
+      45,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      43,
+      0,
+      2,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      45,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      46,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      45,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      45
+    ]
+  ],
+  "model_size_mb": 9.97
+}
