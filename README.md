@@ -1,6 +1,8 @@
 # Steel Defect Detection
 
-Classifies steel surface defects from an image and generates an LLM-backed inspection report — 99.3% test accuracy on the NEU-CLS benchmark, served via a FastAPI endpoint.
+Classifies steel surface defects from an image and generates an LLM-backed inspection report — 99.3% test accuracy on the NEU-CLS benchmark, served via a FastAPI endpoint and an interactive Streamlit demo.
+
+**[Live demo](#live-demo)** · try it with no setup, or run locally:
 
 ```bash
 git clone <this-repo> && cd steel-defect-detection
@@ -12,6 +14,18 @@ docker run -p 8000:8000 steel-defect-api
 ## What it does
 
 Steel mills scrap or downgrade coils with surface defects, but a human inspector still has to look at every flagged image and decide what caused it and what to do next. This project automates the first two steps: a computer-vision classifier identifies which of six defect types is present (crazing, inclusion, patches, pitted surface, rolled-in scale, scratches), and an LLM turns that classification into a short structured inspection report — likely cause, recommended action — grounded in real metallurgical facts about each defect type, not free-form guessing.
+
+## Live demo
+
+**[Try it here](#)** — upload your own image or pick a sample, see the classification and LLM-generated report immediately. No install required.
+
+To run the same demo locally instead:
+
+```bash
+streamlit run app.py
+```
+
+`app.py` runs the classifier and LLM report in-process (same code the API uses — `src/model.py`, `src/llm_report.py`), so it needs no separate server running.
 
 ## Results
 
@@ -77,12 +91,13 @@ curl -X POST http://localhost:8000/predict -F "file=@tests/fixtures/scratches_sa
 
 ## Tech stack
 
-PyTorch/torchvision (MobileNetV2 transfer learning) · FastAPI · Ollama (`qwen2.5:7b-instruct`) · scikit-learn · Docker · GitHub Actions.
+PyTorch/torchvision (MobileNetV2 transfer learning) · FastAPI · Streamlit · Ollama (`qwen2.5:7b-instruct`) · scikit-learn · Docker · GitHub Actions.
 
 ## Repository layout
 
 ```
 steel-defect-detection/
+├── app.py                        # Streamlit live demo (in-process, no API server needed)
 ├── api/
 │   └── main.py                  # FastAPI service: /predict, /health, /model/metrics
 ├── src/

@@ -67,6 +67,7 @@ def test_predict_classifies_real_sample_correctly():
         assert report["defect_type"] == class_name
         assert report["likely_cause"]
         assert report["recommended_action"]
+        assert report["report_source"] in {"llm", "template_fallback"}
 
 
 def test_predict_rejects_corrupted_image():

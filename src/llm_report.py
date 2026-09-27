@@ -75,6 +75,10 @@ class InspectionReport(BaseModel):
     confidence: float = Field(..., ge=0, le=1, description="Classifier confidence for defect_type")
     likely_cause: str = Field(..., description="Probable metallurgical/process cause")
     recommended_action: str = Field(..., description="Concrete next inspection step")
+    report_source: str = Field(
+        ...,
+        description="'llm' if Ollama composed this report, 'template_fallback' if Ollama was unreachable",
+    )
 
 
 def _fallback_report(defect_type: str, confidence: float) -> InspectionReport:
@@ -84,6 +88,7 @@ def _fallback_report(defect_type: str, confidence: float) -> InspectionReport:
         confidence=confidence,
         likely_cause=facts["cause"],
         recommended_action=facts["action"],
+        report_source="template_fallback",
     )
 
 
@@ -134,6 +139,7 @@ def generate_report(defect_type: str, confidence: float) -> InspectionReport:
             confidence=confidence,
             likely_cause=parsed["likely_cause"],
             recommended_action=parsed["recommended_action"],
+            report_source="llm",
         )
     except Exception:
         return _fallback_report(defect_type, confidence)
