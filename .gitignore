@@ -15,6 +15,9 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Kept local-only, not on GitHub -- see 2026-09-27 conversation
+INTERVIEW_PREP_README.md
+
 # Matplotlib / temp
 tmp/
 *.download/
