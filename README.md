@@ -128,12 +128,14 @@ steel-defect-detection/
 
 ```bash
 python3.12 -m venv .venv && source .venv/bin/activate
-pip install --index-url https://download.pytorch.org/whl/cpu torch==2.8.0 torchvision==0.23.0
 pip install -r requirements.txt
 
 # Data + model already committed -- skip straight to serving:
 uvicorn api.main:app --reload
 # Docs: http://127.0.0.1:8000/docs
+
+# Or the interactive demo instead of the raw API:
+streamlit run app.py
 
 # To retrain from scratch instead:
 # 1. Download data -- see data/raw/README.md

@@ -2,12 +2,11 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# CPU-only torch/torchvision first (much smaller download than the default
-# CUDA-enabled PyPI wheel), then the rest of the pinned requirements.
+# requirements.txt pins the CPU-only torch/torchvision build for Linux via
+# --extra-index-url + a platform marker, so this is the only install step
+# needed -- no separate CUDA-avoidance dance.
 COPY requirements.txt .
-RUN pip install --no-cache-dir --index-url https://download.pytorch.org/whl/cpu \
-      torch==2.8.0 torchvision==0.23.0 \
-    && pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY api/ ./api/
 COPY src/ ./src/

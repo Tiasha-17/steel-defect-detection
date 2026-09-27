@@ -1,5 +1,11 @@
-torch==2.8.0
-torchvision==0.23.0
+--extra-index-url https://download.pytorch.org/whl/cpu
+# Linux (Docker, CI, Streamlit Cloud) gets the CPU-only build so `pip install
+# -r requirements.txt` never pulls PyPI's multi-GB CUDA-bundled wheel. macOS
+# wheels are CPU/MPS-only either way and aren't published with a +cpu suffix.
+torch==2.8.0+cpu; sys_platform == "linux"
+torch==2.8.0; sys_platform != "linux"
+torchvision==0.23.0+cpu; sys_platform == "linux"
+torchvision==0.23.0; sys_platform != "linux"
 fastapi==0.128.8
 uvicorn==0.39.0
 python-multipart==0.0.20
