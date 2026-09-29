@@ -1,11 +1,14 @@
 --extra-index-url https://download.pytorch.org/whl/cpu
-# Linux (Docker, CI, Streamlit Cloud) gets the CPU-only build so `pip install
-# -r requirements.txt` never pulls PyPI's multi-GB CUDA-bundled wheel. macOS
-# wheels are CPU/MPS-only either way and aren't published with a +cpu suffix.
+# Only torch itself bundles the multi-GB CUDA runtime on PyPI's default Linux
+# wheel, so only it needs the +cpu-tagged build there. macOS has no +cpu
+# variant (its wheels are CPU/MPS-only either way). torchvision never bundles
+# CUDA (~8.6MB regardless of platform) and PyTorch's cpu index inconsistently
+# publishes +cpu-tagged torchvision wheels per architecture (present for
+# linux/x86_64, absent for linux/aarch64 e.g. Docker on Apple Silicon) -- so
+# pin it plain and let pip pick whichever matching wheel is available.
 torch==2.8.0+cpu; sys_platform == "linux"
 torch==2.8.0; sys_platform != "linux"
-torchvision==0.23.0+cpu; sys_platform == "linux"
-torchvision==0.23.0; sys_platform != "linux"
+torchvision==0.23.0
 fastapi==0.128.8
 uvicorn==0.39.0
 python-multipart==0.0.20
